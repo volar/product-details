@@ -49,7 +49,6 @@ routes.post("/", (req, res) => {
   try {
     //get all the productdetails from the req.body
     const productDetails = {
-      id: req.body.id,
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,

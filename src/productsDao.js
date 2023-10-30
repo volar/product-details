@@ -61,17 +61,19 @@ const saveProductDetails = function (ProductDetails, done) {
         }
         let products = JSON.parse(fileContent);
 
-        const index = products.findIndex(prodct => prodct.id == ProductDetails.id);
-        if(index !== -1) {
-            return done("Product with same productId already exists");
-        }
+        ProductDetails = { id: products.length + 1, ...ProductDetails }
+        const index = products.length;
+        // add id to the productDetail
+
 
         products.push(ProductDetails);
+
+        console.log("ProductDetails", parseInt(ProductDetails.id));
         fs.writeFile('src/products.json', JSON.stringify(products), (err, updatedContent) => {
             if(err) {
                 return done("Exception occurred while updating user details");
             }
-            return done(undefined, "Product Added successfully");
+            return done(undefined, ProductDetails);
         });
     });
 }
@@ -117,9 +119,6 @@ const updateProductDetails = function(ProductDetails, done){
         }
         let products = JSON.parse(fileContent);
 
-        console.log("ProductDetails", ProductDetails);
-
-
         const index = products.findIndex(prodct => prodct.id == parseInt(ProductDetails.id));
         if(index === -1) {
             return done("No Product with productId found");
@@ -130,7 +129,7 @@ const updateProductDetails = function(ProductDetails, done){
             if(err) {
                 return done("Exception occurred while updating products details");
             }
-            return done(undefined, "Product was updated successfully");
+            return done(undefined, products[index]);
         });
     });
 }
