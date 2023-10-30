@@ -1,11 +1,11 @@
 const expres = require("express");
-const routes = expres.Router();
+const router = expres.Router();
 
 //import the controller
 const productsController = require("./productsController");
 
 //This method will get all the Product form the product.json 
-routes.get("/", (req, res) => {
+router.get("/", (req, res) => {
   try {
     //calling the controller getProducts 
     //if error return the response as 400
@@ -14,7 +14,7 @@ routes.get("/", (req, res) => {
       if(err){
         return res.status(400).send(err);
       }
-      return res.status(200).send({status:"OK", data:results});
+      return res.status(200).send({STATUS:"OK", data:results});
       });
     //Handle the exception return response as 400 with status as some error msg
   } catch (err) {
@@ -23,7 +23,7 @@ routes.get("/", (req, res) => {
 });
 
 //This method will get the product with given productId form the product.json 
-routes.get("/:productId", (req, res) => {
+router.get("/:productId", (req, res) => {
   try {
     //get the productid from the req.params
     const productId = req.params.productId;
@@ -35,7 +35,7 @@ routes.get("/:productId", (req, res) => {
       if(err){
         return res.status(400).send(err);
       }
-      return res.status(200).send({status:"OK", data:product});
+      return res.status(200).send({STATUS:"OK", data:product});
     });
 
   } catch (err) {
@@ -45,7 +45,7 @@ routes.get("/:productId", (req, res) => {
 });
 
 //This method will save/post a new product in the products.json 
-routes.post("/", (req, res) => {
+router.post("/", (req, res) => {
   try {
     //get all the productdetails from the req.body
     const productDetails = {
@@ -61,7 +61,7 @@ routes.post("/", (req, res) => {
       if(err){
           return res.status(400).send(err);
       }
-      return res.status(201).send({status:"OK", data:results});
+      return res.status(201).send({STATUS:"OK", data:results});
     });
   } catch (err) {
     //Handle the exception return response as 400 with status as some error msg
@@ -71,7 +71,7 @@ routes.post("/", (req, res) => {
 
 
 //This method will save/post a new product in the products.json 
-routes.put("/:productId", (req, res) => {
+router.put("/:productId", (req, res) => {
   try {
     //get all the productdetails from the req.body
          //get the productid from the req.params
@@ -92,7 +92,7 @@ routes.put("/:productId", (req, res) => {
       if(err){
           return res.status(400).send(err);
       }
-      return res.status(201).send({status:"OK", data:results});
+      return res.status(201).send({STATUS:"OK", data:results});
     });
   } catch (err) {
     //Handle the exception return response as 400 with status as some error msg
@@ -101,7 +101,7 @@ routes.put("/:productId", (req, res) => {
 });
 
 //This method will delete product with specific productid from the product.json 
-routes.delete("/:productId", (req, res) => {
+router.delete("/:productId", (req, res) => {
   try {
      //get the productid from the req.params
    const productId = req.params.productId;
@@ -113,7 +113,7 @@ routes.delete("/:productId", (req, res) => {
       if(err){
           return res.status(400).send(err);
       }
-      return res.status(200).send({status:"OK", data:results});
+      return res.status(200).send({STATUS:"OK", data:results});
     });
 
   } catch (err) {
@@ -122,4 +122,4 @@ routes.delete("/:productId", (req, res) => {
   }
 });
 
-module.exports = routes;
+module.exports = router;

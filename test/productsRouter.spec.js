@@ -12,7 +12,7 @@ describe("Testing products API", function () {
         expect(err).to.be.equal(null);
         expect(err).to.equal(null);
         expect(res.body).to.be.an("object");
-        expect(res.body.status).to.equal("OK");
+        expect(res.body.STATUS).to.equal("OK");
         expect(res.body.data[0].name).to.be.equal("LED Monitor");
          expect(res.body.data[1].name).to.be.equal("Fridge");
          expect(res.body.data[2].name).to.be.equal("Optical Mouse");
@@ -27,7 +27,7 @@ describe("Testing products API", function () {
       .expect(200)
       .end((err, res) => {
         expect(res.body).to.be.an("object");
-        expect(res.body.status).to.equal("OK");
+        expect(res.body.STATUS).to.equal("OK");
         expect(res.body.data.id).to.be.equal(3);
         expect(res.body.data.name).to.be.equal("Optical Mouse");
         expect(res.body.data.price).to.be.equal(25);
@@ -52,7 +52,7 @@ describe("Testing products API", function () {
       .end((err, res) => {
         expect(err).to.equal(null);
         expect(res.body).to.be.an("object");
-        expect(res.body.status).to.equal("OK");
+        expect(res.body.STATUS).to.equal("OK");
         expect(res.body.data.name).to.equal(newProduct.name);
         expect(res.body.data.price).to.be.equal(newProduct.price);
         done(err);
@@ -76,7 +76,7 @@ describe("Testing products API", function () {
       .end((err, res) => {
         expect(err).to.equal(null);
         expect(res.body).to.be.an("object");
-        expect(res.body.status).to.equal("OK");
+        expect(res.body.STATUS).to.equal("OK");
         expect(res.body.data.name).to.equal(updatedProduct.name);
         expect(res.body.data.price).to.be.equal(updatedProduct.price);
         done(err);
